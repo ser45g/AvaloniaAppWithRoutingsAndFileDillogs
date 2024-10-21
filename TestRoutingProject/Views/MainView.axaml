@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:TestRoutingProject.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:view="using:TestRoutingProject.Views"
+			 x:Class="TestRoutingProject.Views.MainView"
+             x:DataType="vm:MainViewModel">
+ 
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="{x:Type vm:UserControl1ViewModel}">
+			<view:UserControl1View/>
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type vm:UserControl2ViewModel}">
+			<view:UserControl2View/>
+		</DataTemplate>
+	
+		<DataTemplate DataType="{x:Type vm:UserControl3ViewModel}">
+			<view:UserControl3View/>
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type vm:UserControl4ViewModel}">
+			<view:UserControl4View/>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	
+  <ContentControl Content="{Binding Content}"/>
+</UserControl>

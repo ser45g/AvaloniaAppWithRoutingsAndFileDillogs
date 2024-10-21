@@ -1,0 +1,87 @@
+<UserControl
+    x:Class="TestRoutingProject.Views.UserControl3View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:flex="urn:alba:avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:FluentAvalonia.UI.Controls"
+    xmlns:viewModels="using:TestRoutingProject.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    x:DataType="viewModels:UserControl3ViewModel"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel>
+
+            <StackPanel Margin="10" Orientation="Vertical" Spacing="5">
+                <Label Target="{Binding ElementName=inboundMessageTextArea}">Исходное сообщение</Label>
+                <TextBox
+                    Name="inboundMessageTextArea"
+                    MinHeight="200"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                    TextWrapping="Wrap" />
+                <StackPanel Spacing="20">
+
+
+
+                    <ui:SettingsExpander Description="Позволяет зашифровать/расшифровать сообщение" Header="Метод шифрования">
+                        <ui:SettingsExpander.Footer>
+                            <ComboBox>
+                                <ComboBoxItem>Шифр Цезаря</ComboBoxItem>
+                                <ComboBoxItem>Шифр перестановкой</ComboBoxItem>
+                                <ComboBoxItem>Другой какой-то шифр</ComboBoxItem>
+                            </ComboBox>
+                        </ui:SettingsExpander.Footer>
+
+
+                    </ui:SettingsExpander>
+
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton GroupName="typeOfAction">Шифровать</RadioButton>
+                        <RadioButton GroupName="typeOfAction">Дешифровать</RadioButton>
+                    </StackPanel>
+
+                    <ui:SettingsExpander Description="Вы можете просмотреть график соответсвия исходного и изменённого (зашифрованного или расшифрованного сообщения)" Header="Графики">
+                        <flex:FlexPanel
+                            AlignContent="FlexEnd"
+                            ColumnGap="10"
+							RowGap="10"
+                            Wrap="Wrap">
+                            <Button>Построить графики</Button>
+                            <ComboBox>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                <ComboBoxItem>Исходное и зашифрованное сообщение</ComboBoxItem>
+                                <ComboBoxItem>Исходное и расшифрованное сообщение</ComboBoxItem>
+                            </ComboBox>
+                        </flex:FlexPanel>
+                    </ui:SettingsExpander>
+
+                    <ui:SettingsExpander Description="Вы можете загрузить сообщение из файла" Header="Найти файл...">
+
+                        <ui:SettingsExpander.Footer>
+                            <Button Margin="5" Content="Найти файл..." />
+                        </ui:SettingsExpander.Footer>
+                    </ui:SettingsExpander>
+                    <ui:SettingsExpander Description="Вы можете сохранить сообщение в файл" Header="Сохранить файл...">
+                        <ui:SettingsExpander.Footer>
+                            <flex:FlexPanel
+                                HorizontalAlignment="Left"
+                                AlignContent="FlexStart"
+                                Wrap="Wrap">
+                                <Button Margin="5" Content="Сохранить файл..." />
+                                <CheckBox Margin="5" Content="Перезаписать файл" />
+                            </flex:FlexPanel>
+                        </ui:SettingsExpander.Footer>
+                    </ui:SettingsExpander>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

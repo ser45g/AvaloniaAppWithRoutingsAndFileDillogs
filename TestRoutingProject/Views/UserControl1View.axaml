@@ -1,0 +1,49 @@
+<UserControl
+    x:Class="TestRoutingProject.Views.UserControl1View"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:flex="urn:alba:avalonia"
+	 xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:FluentAvalonia.UI.Controls"
+    xmlns:viewModels="using:TestRoutingProject.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+	Name="root"
+    x:DataType="viewModels:UserControl1ViewModel"
+    mc:Ignorable="d">
+   
+
+    <Grid>
+		<Grid.Background>
+			<ImageBrush
+            AlignmentX="Right"
+            Opacity="0.5"
+            Source="/Assets/technology-cyber-security94.jpg"
+            Stretch="UniformToFill" />
+		</Grid.Background>
+		
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border
+                Margin="0,20"
+				Opacity="0.7"
+                Padding="10 30"
+				Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=Background, Mode=OneWay}"
+				BorderThickness="2"
+				BorderBrush="{Binding Foreground,ElementName=textWelcome}"
+				
+                CornerRadius="30">
+                <TextBlock Name="textWelcome" FontSize="24" MaxWidth="768" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Добро пожаловать! Данное приложение позволяет использовать простые криптографические методы, чтобы шифровать данные." TextWrapping="Wrap"  />
+            </Border>
+            <Button VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" Padding="30 20" Command="{Binding GoUserControl2Command}" BorderThickness="2" BorderBrush="{Binding Foreground,ElementName=textWelcome}">
+                Начать использовать
+            </Button>
+			
+        </StackPanel>
+
+
+
+    </Grid>
+
+</UserControl>
