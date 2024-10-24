@@ -4,60 +4,100 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:flex="urn:alba:avalonia"
+    xmlns:core="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:FluentAvalonia.UI.Controls"
     xmlns:viewModels="using:TestRoutingProject.ViewModels"
-    d:DesignHeight="450"
-    d:DesignWidth="300"
+   x:CompileBindings="True"
     x:DataType="viewModels:UserControl3ViewModel"
     mc:Ignorable="d">
     <ScrollViewer>
         <StackPanel>
+			<StackPanel.Styles>
+				<Style Selector="Button:pointerover /template/ ContentPresenter">
+					<Setter Property="Background" Value="SkyBlue"/>
+				</Style>
 
-            <StackPanel Margin="10" Orientation="Vertical" Spacing="5">
+				<Style Selector="Button:pressed /template/ ContentPresenter">
+					<Setter Property="Background" Value="BlueViolet"/>
+				</Style>
+			</StackPanel.Styles>
+
+            <StackPanel
+                Margin="10"
+                Orientation="Vertical"
+                Spacing="5">
                 <Label Target="{Binding ElementName=inboundMessageTextArea}">Исходное сообщение</Label>
+
                 <TextBox
                     Name="inboundMessageTextArea"
-                    MinHeight="200"
+                    MinHeight="270"
+                    MaxHeight="576"
                     AcceptsReturn="True"
                     AcceptsTab="True"
-                    TextWrapping="Wrap" />
+                    Text="{Binding Message}"
+                    TextWrapping="Wrap"
+                    Watermark="Введите сообщение" />
+
+
                 <StackPanel Spacing="20">
 
 
 
                     <ui:SettingsExpander Description="Позволяет зашифровать/расшифровать сообщение" Header="Метод шифрования">
                         <ui:SettingsExpander.Footer>
-                            <ComboBox>
-                                <ComboBoxItem>Шифр Цезаря</ComboBoxItem>
-                                <ComboBoxItem>Шифр перестановкой</ComboBoxItem>
-                                <ComboBoxItem>Другой какой-то шифр</ComboBoxItem>
-                            </ComboBox>
+							<StackPanel Orientation="Horizontal" Spacing="5">
+								 <ComboBox ItemsSource="{Binding CypherNames}" SelectedIndex="{Binding SelectedCypherNameIndex}" />
+								<Button Command="{Binding SetUpCypherCommand}" >
+									<ui:SymbolIcon Symbol="MoreVertical" FontSize="20"/>
+								</Button>
+							</StackPanel>
+                           
                         </ui:SettingsExpander.Footer>
 
 
                     </ui:SettingsExpander>
+                    <flex:FlexPanel JustifyContent="SpaceBetween" Margin="5">
 
-                    <StackPanel Orientation="Vertical">
-                        <RadioButton GroupName="typeOfAction">Шифровать</RadioButton>
-                        <RadioButton GroupName="typeOfAction">Дешифровать</RadioButton>
-                    </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <RadioButton IsChecked="{Binding IsCypherMode}" Name="cypher" GroupName="typeOfAction">Шифровать</RadioButton>
+                            <RadioButton IsChecked="{Binding IsDecypherMode}" Name="decypher" GroupName="typeOfAction">Дешифровать</RadioButton>
+                        </StackPanel>
+                        <Button Name="CypherDecypherButton" Command="{Binding CypherDecypherCommand}">
+							
+                           
+                            <i:Interaction.Behaviors>
+                                <core:DataTriggerBehavior Binding="{Binding #cypher.IsChecked}" Value="True" ComparisonCondition="Equal">
+									<core:ChangePropertyAction TargetObject="CypherDecypherButton"
+                                   PropertyName="Content"
+                                   Value="Зашифровать" />
+                                </core:DataTriggerBehavior>
+                                <core:DataTriggerBehavior Binding="{Binding IsChecked,ElementName=decypher}" Value="True" ComparisonCondition="Equal">
+									<core:ChangePropertyAction TargetObject="CypherDecypherButton"
+                                   PropertyName="Content"
+                                   Value="Расшифровать" />
+                                </core:DataTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                           
+                        </Button>
+                    </flex:FlexPanel>
 
                     <ui:SettingsExpander Description="Вы можете просмотреть график соответсвия исходного и изменённого (зашифрованного или расшифрованного сообщения)" Header="Графики">
                         <flex:FlexPanel
                             AlignContent="FlexEnd"
                             ColumnGap="10"
-							RowGap="10"
+                            RowGap="10"
                             Wrap="Wrap">
-                            <Button>Построить графики</Button>
-                            <ComboBox>
+                            <Button Command="{Binding ShowChartsCommand}">Построить графики</Button>
+                            <ComboBox ItemsSource="{Binding ChartTypeNames}" SelectedIndex="{Binding SelectedChartTypeNameIndex}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding}" TextWrapping="Wrap" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
-                                <ComboBoxItem>Исходное и зашифрованное сообщение</ComboBoxItem>
-                                <ComboBoxItem>Исходное и расшифрованное сообщение</ComboBoxItem>
+                               
                             </ComboBox>
                         </flex:FlexPanel>
                     </ui:SettingsExpander>
@@ -65,17 +105,27 @@
                     <ui:SettingsExpander Description="Вы можете загрузить сообщение из файла" Header="Найти файл...">
 
                         <ui:SettingsExpander.Footer>
-                            <Button Margin="5" Content="Найти файл..." />
+                            <Button
+                                Margin="5"
+                                Command="{Binding OpenFileCommand}"
+                                Content="Найти файл..." />
                         </ui:SettingsExpander.Footer>
                     </ui:SettingsExpander>
+
                     <ui:SettingsExpander Description="Вы можете сохранить сообщение в файл" Header="Сохранить файл...">
                         <ui:SettingsExpander.Footer>
                             <flex:FlexPanel
                                 HorizontalAlignment="Left"
                                 AlignContent="FlexStart"
                                 Wrap="Wrap">
-                                <Button Margin="5" Content="Сохранить файл..." />
-                                <CheckBox Margin="5" Content="Перезаписать файл" />
+                                <Button
+                                    Margin="5"
+                                    Command="{Binding SaveFileCommand}"
+                                    Content="Сохранить файл..." />
+                                <CheckBox
+                                    Margin="5"
+                                    Content="Перезаписать файл"
+                                    IsChecked="{Binding DoesOverwrite}" />
                             </flex:FlexPanel>
                         </ui:SettingsExpander.Footer>
                     </ui:SettingsExpander>

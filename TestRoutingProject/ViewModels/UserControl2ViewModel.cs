@@ -14,9 +14,9 @@ namespace TestRoutingProject.ViewModels
     public partial class UserControl2ViewModel : ViewModelBase
     {
         private readonly HistoryRouter<UserControl2Page> router;
+
         [ObservableProperty]
         private ViewModelBase _content = default!;
-
 
         public UserControl2ViewModel(HistoryRouter<UserControl2Page> router)
         {
@@ -31,24 +31,23 @@ namespace TestRoutingProject.ViewModels
         private void GoUserControl3()
         {
             router.GoTo<UserControl3ViewModel>();
+            //IsPaneOpen = false;
         }
         [RelayCommand]
         private void GoUserControl4()
         {
             router.GoTo<UserControl4ViewModel>();
+            //IsPaneOpen = false;
+
         }
+       
         [RelayCommand]
         private void Help()
         {
-            router.GoTo<UserControl4ViewModel>();
+            router.GoTo<UserControl5ViewModel>();
+
         }
-        [RelayCommand]
-        private void GoTo(NavigationViewItemInvokedEventArgs args)
-        {
-            int id = 1;
-            NavigationViewItem a = new NavigationViewItem();
-            
-        }
+      
     }
         
 }

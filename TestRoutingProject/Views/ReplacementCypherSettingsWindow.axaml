@@ -1,15 +1,10 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:TestRoutingProject.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:TestRoutingProject.Views"
-        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
-		
-		
-        x:Class="TestRoutingProject.Views.MainWindow"
-        Icon="/Assets/9a3d924f52480cbb5caa55905b9178b5.jpg"
-        Title="Простые криптографические методы">
+        mc:Ignorable="d" Height="350" Width="300" xmlns:view="using:TestRoutingProject.Views"
+        WindowStartupLocation="CenterOwner" x:Class="TestRoutingProject.Views.ReplacementCypherSettingsWindow"
+        Title="Настройка шифра перестановкой">
 	<Grid RowDefinitions="Auto,*">
 		<Grid  Grid.Row="0"  >
 
@@ -21,6 +16,9 @@
 				</TextBlock.IsVisible>
 			</TextBlock>
 		</Grid>
-		<views:MainView Grid.Row="1" />
+		<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+
+			<view:ReplacementCypherSettingsView/>
+		</ScrollViewer>
 	</Grid>
 </Window>

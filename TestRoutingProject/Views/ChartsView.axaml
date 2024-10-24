@@ -1,0 +1,41 @@
+<UserControl
+    x:Class="TestRoutingProject.Views.ChartsView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:liveChart="using:LiveChartsCore.SkiaSharpView"
+    xmlns:liveChartAvalonia="using:LiveChartsCore.SkiaSharpView.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:vm="using:TestRoutingProject.ViewModels"
+    x:DataType="vm:ChartsViewModel"
+    mc:Ignorable="d">
+
+    <StackPanel
+        Margin="10"
+        Orientation="Vertical"
+        Spacing="10">
+
+        
+        <liveChartAvalonia:CartesianChart
+            Height="300"
+            Series="{Binding InitialSeries}"
+            XAxes="{Binding XAxesInitial}"
+            YAxes="{Binding YAxesInitial}"
+            ZoomMode="Both" />
+		<Separator/>
+        <liveChartAvalonia:CartesianChart
+            Height="300"
+            Series="{Binding ChangedSeries}"
+            XAxes="{Binding XAxesChanged}"
+            YAxes="{Binding YAxesChanged}"
+            ZoomMode="Both" />
+
+        <Button HorizontalAlignment="Center" Command="{Binding CloseCommand}">Close</Button>
+
+
+    </StackPanel>
+
+
+
+</UserControl>

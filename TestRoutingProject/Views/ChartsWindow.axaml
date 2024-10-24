@@ -1,16 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:TestRoutingProject.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:TestRoutingProject.Views"
-        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
-		
-		
-        x:Class="TestRoutingProject.Views.MainWindow"
-        Icon="/Assets/9a3d924f52480cbb5caa55905b9178b5.jpg"
-        Title="Простые криптографические методы">
-	<Grid RowDefinitions="Auto,*">
+		xmlns:vm="using:TestRoutingProject.ViewModels"
+xmlns:view="using:TestRoutingProject.Views"
+x:Class="TestRoutingProject.Views.ChartsWindow"  WindowStartupLocation="CenterOwner"
+        Width="300" Height="400" 
+        Title="�������">
+
+<Grid RowDefinitions="Auto,*">
 		<Grid  Grid.Row="0"  >
 
 			<TextBlock Padding="10" Text="{Binding Title,RelativeSource={RelativeSource FindAncestor,AncestorType=Window}}">
@@ -21,6 +19,10 @@
 				</TextBlock.IsVisible>
 			</TextBlock>
 		</Grid>
-		<views:MainView Grid.Row="1" />
+<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+		
+		 <view:ChartsView  />
+</ScrollViewer>
 	</Grid>
+ 
 </Window>

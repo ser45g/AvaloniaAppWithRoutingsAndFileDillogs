@@ -4,7 +4,6 @@
     height: 100%;
     width: 100%;
     background: white;
-    font-family: 'Outfit', sans-serif;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -52,7 +51,7 @@
 }
 
 .avalonia-splash.splash-close {
-    transition: opacity 200ms, display 200ms;
+    transition: opacity 0ms, display 0ms;
     display: none;
     opacity: 0;
 }

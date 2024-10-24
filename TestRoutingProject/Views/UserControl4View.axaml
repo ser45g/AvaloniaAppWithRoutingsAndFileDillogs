@@ -3,7 +3,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             xmlns:viewModels="using:TestRoutingProject.ViewModels"
-              x:DataType="viewModels:UserControl4ViewModel" x:Class="TestRoutingProject.Views.UserControl4View">
-  UserControl4
+             xmlns:viewModels="using:TestRoutingProject.ViewModels" xmlns:ui="using:FluentAvalonia.UI.Controls" 
+			  xmlns:core="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
+    
+              x:DataType="viewModels:UserControl4ViewModel" 
+			  x:Class="TestRoutingProject.Views.UserControl4View">
+	
+		<StackPanel  HorizontalAlignment="Stretch">
+			<ui:SettingsExpander Header="Сменить тему" Description="Позволяет сменить используемую тему">
+				<ui:SettingsExpander.Footer>
+					<ToggleButton Name="toggle" IsChecked="{Binding IsLightTheme}" Command="{Binding ChangeThemeCommand}">
+						<i:Interaction.Behaviors>
+							<core:DataTriggerBehavior Binding="{Binding #toggle.IsChecked}" Value="False" ComparisonCondition="Equal">
+								<core:ChangePropertyAction TargetObject="symbol"
+							   PropertyName="Symbol"
+							   Value="WeatherMoon" />
+							</core:DataTriggerBehavior>
+							<core:DataTriggerBehavior Binding="{Binding #toggle.IsChecked}" Value="True" ComparisonCondition="Equal">
+								<core:ChangePropertyAction TargetObject="symbol"
+							   PropertyName="Symbol"
+							   Value="WeatherSunny" />
+							</core:DataTriggerBehavior>
+						</i:Interaction.Behaviors>
+
+						<StackPanel Orientation="Horizontal" Spacing="3">
+							<TextBlock Text="Смена темы приложения"/>
+							<ui:SymbolIcon Name="symbol" Symbol="WeatherMoon"/>
+						</StackPanel>
+					</ToggleButton>
+				</ui:SettingsExpander.Footer>
+					
+				
+			</ui:SettingsExpander>
+		</StackPanel>
+	
 </UserControl>

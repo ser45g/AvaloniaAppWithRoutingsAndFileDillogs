@@ -4,10 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
     xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
-    xmlns:core="using:Avalonia.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
-    xmlns:i="using:Avalonia.Xaml.Interactivity"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+	
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:FluentAvalonia.UI.Controls"
     xmlns:view="using:TestRoutingProject.Views"
@@ -25,55 +26,98 @@
             <view:UserControl4View />
         </DataTemplate>
     </UserControl.DataTemplates>
+    <Grid RowDefinitions="Auto,*">
 
-    <ui:NavigationView Name="nav" IsSettingsVisible="False">
+        <Grid.Styles>
+            <Style Selector="ui|SymbolIcon">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="5 0" />
+            </Style>
+        </Grid.Styles>
 
-        <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem
-                Content="Главная"
-                IconSource="Home"
-                Tag="Hello">
-                <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="Tapped">
-                        <core:EventTriggerBehavior.Actions>
-                            <core:InvokeCommandAction Command="{Binding GoUserControl3Command}" />
-                        </core:EventTriggerBehavior.Actions>
-                    </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-            </ui:NavigationViewItem>
+        <ToggleButton
+            Name="toggle"
+            Grid.Row="0"
+            Margin="3">
+            <ui:SymbolIcon Symbol="AlignJustified" />
+        </ToggleButton>
+        <SplitView
+            Grid.Row="1"
+            DisplayMode="Overlay"
+            IsPaneOpen="{Binding #toggle.IsChecked, Mode=TwoWay}"
+            OpenPaneLength="200">
 
-
-        </ui:NavigationView.MenuItems>
-
-		<ui:NavigationView.FooterMenuItems>
-
-			<ui:NavigationViewItem Content="Помощь..." IconSource="Help" >
-				<i:Interaction.Behaviors>
-					<core:EventTriggerBehavior EventName="Tapped">
-						<core:EventTriggerBehavior.Actions>
-							<core:InvokeCommandAction Command="{Binding HelpCommand}" />
-						</core:EventTriggerBehavior.Actions>
-					</core:EventTriggerBehavior>
-				</i:Interaction.Behaviors>
-			</ui:NavigationViewItem>
-			<ui:NavigationViewItem
-                Content="Настройки..."
-                IconSource="Settings"
-                Tag="Hello">
-                <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="Tapped">
-                        <core:EventTriggerBehavior.Actions>
-                            <core:InvokeCommandAction Command="{Binding GoUserControl4Command}" />
-                        </core:EventTriggerBehavior.Actions>
-                    </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-            </ui:NavigationViewItem>
-		</ui:NavigationView.FooterMenuItems>
-		
-        <ui:NavigationView.Content>
-            <ContentControl Margin="5 35 5 5" Content="{Binding Content}" />
-        </ui:NavigationView.Content>
-    </ui:NavigationView>
+            <SplitView.Pane>
 
 
+                <DockPanel Margin="0,5" VerticalAlignment="Stretch">
+                    <DockPanel.Styles>
+                        <Style Selector="Button">
+
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        </Style>
+                    </DockPanel.Styles>
+
+                    <Grid DockPanel.Dock="Bottom">
+                        <StackPanel>
+                            <Button Name="GoUserControl4" Command="{Binding GoUserControl4Command}">
+                                <i:Interaction.Behaviors>
+                                    <ia:EventTriggerBehavior EventName="Click" SourceObject="GoUserControl4">
+                                        <ia:ChangePropertyAction
+                                            PropertyName="IsChecked"
+                                            TargetObject="toggle"
+                                            Value="False" />
+                                    </ia:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                                <StackPanel Orientation="Horizontal" Spacing="3">
+                                    <ui:SymbolIcon Symbol="Settings" />
+                                    <TextBlock Text="Насторойки" />
+                                </StackPanel>
+
+                            </Button>
+
+                            <Button Name="GoHelp" Command="{Binding HelpCommand}">
+                                <i:Interaction.Behaviors>
+                                    <ia:EventTriggerBehavior EventName="Click" SourceObject="GoHelp">
+                                        <ia:ChangePropertyAction
+                                            PropertyName="IsChecked"
+                                            TargetObject="toggle"
+                                            Value="False" />
+                                    </ia:EventTriggerBehavior>
+                                </i:Interaction.Behaviors>
+                                <StackPanel Orientation="Horizontal" Spacing="3">
+                                    <ui:SymbolIcon Symbol="Help" />
+                                    <TextBlock Text="Помощь" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel DockPanel.Dock="Top">
+                        <Button Name="GoUserControl3" Command="{Binding GoUserControl3Command}">
+                            <i:Interaction.Behaviors>
+                                <ia:EventTriggerBehavior EventName="Click" SourceObject="GoUserControl3">
+                                    <ia:ChangePropertyAction
+                                        PropertyName="IsChecked"
+                                        TargetObject="toggle"
+                                        Value="False" />
+                                </ia:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                            <StackPanel Orientation="Horizontal" Spacing="3">
+                                <ui:SymbolIcon Symbol="Home" />
+                                <TextBlock Text="Главная" />
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                </DockPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <ContentControl Margin="5" Content="{Binding Content}" />
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
 </UserControl>

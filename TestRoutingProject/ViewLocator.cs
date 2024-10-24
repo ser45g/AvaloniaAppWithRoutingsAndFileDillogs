@@ -1,31 +1,30 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using HanumanInstitute.MvvmDialogs;
+using HanumanInstitute.MvvmDialogs.Avalonia;
 using System;
 using TestRoutingProject.ViewModels;
+using TestRoutingProject.Views;
 
 namespace TestRoutingProject
 {
-    public class ViewLocator : IDataTemplate
+    public class ViewLocator : StrongViewLocator
     {
-        public Control? Build(object? data)
-        {
-            if (data is null)
-                return null;
+        public ViewLocator() {
+            ForceSinglePageNavigation = false;
 
-            var name = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-            var type = Type.GetType(name);
+            Register<MainViewModel, MainView, MainWindow>();
+            Register<UserControl1ViewModel, UserControl1View, MainWindow>();
+            Register<UserControl2ViewModel, UserControl2View, MainWindow>();
+            Register<UserControl3ViewModel, UserControl3View, MainWindow>();
+            Register<UserControl4ViewModel, UserControl4View,MainWindow>();
+            Register<UserControl5ViewModel, UserControl5View,MainWindow>();
 
-            if (type != null)
-            {
-                return (Control)Activator.CreateInstance(type)!;
-            }
-
-            return new TextBlock { Text = "Not Found: " + name };
-        }
-
-        public bool Match(object? data)
-        {
-            return data is ViewModelBase;
+            Register<ChartsViewModel,ChartsView,ChartsWindow>();
+            Register<NoSettingsAvailableViewModel, NoSettingsAvailableView, NoSettingsAvailableWindow>();
+            Register<CeaserCypherSettingsViewModel,CeaserCypherSettingsView,CeaserCypherSettingsWindow>();
+            Register<ReplacementCypherSettingsViewModel,ReplacementCypherSettingsView,ReplacementCypherSettingsWindow>();
         }
     }
 }

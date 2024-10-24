@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"  xmlns:ui="using:FluentAvalonia.UI.Controls"
+    xmlns:viewModels="using:TestRoutingProject.ViewModels"
+   x:CompileBindings="True"
+    x:DataType="viewModels:UserControl5ViewModel"
+             x:Class="TestRoutingProject.Views.UserControl5View" >
+	<Grid>
+		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text=" Пока не реализовано"/>
+	</Grid>
+ 
+</UserControl>
