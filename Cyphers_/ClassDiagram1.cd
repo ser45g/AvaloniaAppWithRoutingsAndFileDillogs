@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cyphers.CeaserCypher" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CeaserCypher.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Cyphers.InverseCypher" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InverseCypher.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Cyphers.ReplacementCypher" BaseTypeListCollapsed="true">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQEACAAAAAAAAAAQAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReplacementCypher.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.117" />
+  </Class>
+  <Interface Name="Cyphers.ICypher">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICypher.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
