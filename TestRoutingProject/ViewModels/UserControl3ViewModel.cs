@@ -188,16 +188,12 @@ namespace TestRoutingProject.ViewModels
                 if(file?.Path == null)
                 {
                     throw new ArgumentNullException();
-                } 
-                    
-                if (DoesOverwrite)
-                {
-                    await File.WriteAllTextAsync(file.Path.AbsolutePath, Message);
                 }
-                else
-                {
-                    await File.AppendAllTextAsync(file.Path.AbsolutePath, Message);
-                }
+
+                using Stream stream=await file.OpenWriteAsync();
+               
+                using StreamWriter writer = new StreamWriter(stream);
+                await writer.WriteAsync( Message);
             }
             catch (Exception ex) {
                 await _dialogService.ShowMessageBoxAsync(App.MainViewModel, "Возникли ошибки при сохранении файла", "Ошибка сохранения файла", MessageBoxButton.Ok, MessageBoxImage.Error);

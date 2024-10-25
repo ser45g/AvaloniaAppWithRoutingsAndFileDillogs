@@ -4,8 +4,6 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Avalonia.SimpleRouter;
-using Material.Styles.Themes.Base;
-using Material.Styles.Themes;
 
 using TestRoutingProject.ViewModels;
 using TestRoutingProject.Views;
@@ -30,12 +28,12 @@ namespace TestRoutingProject
             AvaloniaXamlLoader.Load(this);
 
             var build = Locator.CurrentMutable;
-            var loggerFactory = LoggerFactory.Create(builder => builder.AddFilter(logLevel => true).AddDebug());
+           // var loggerFactory = LoggerFactory.Create(builder => builder.AddFilter(logLevel => true).AddDebug());
 
             build.RegisterLazySingleton(() => (IDialogService)new DialogService(
                 new DialogManager(
                     viewLocator: new ViewLocator(),
-                    logger: loggerFactory.CreateLogger<DialogManager>(),
+                    //logger: loggerFactory.CreateLogger<DialogManager>(),
                     dialogFactory: new DialogFactory().AddFluent(messageBoxType: FluentMessageBoxType.ContentDialog)),
                 viewModelFactory: x => Locator.Current.GetService(x)));
 

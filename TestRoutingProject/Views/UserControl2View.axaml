@@ -45,7 +45,7 @@
             Grid.Row="1"
             DisplayMode="Overlay"
             IsPaneOpen="{Binding #toggle.IsChecked, Mode=TwoWay}"
-            OpenPaneLength="200">
+            OpenPaneLength="400">
 
             <SplitView.Pane>
 
@@ -62,7 +62,7 @@
                     </DockPanel.Styles>
 
                     <Grid DockPanel.Dock="Bottom">
-                        <StackPanel>
+                        <StackPanel Spacing="15">
                             <Button Name="GoUserControl4" Command="{Binding GoUserControl4Command}">
                                 <i:Interaction.Behaviors>
                                     <ia:EventTriggerBehavior EventName="Click" SourceObject="GoUserControl4">
