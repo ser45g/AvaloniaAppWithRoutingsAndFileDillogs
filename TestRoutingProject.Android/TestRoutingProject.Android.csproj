@@ -4,11 +4,15 @@
     <TargetFramework>net8.0-android34.0</TargetFramework>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
+	  <PublishTrimmed>true</PublishTrimmed>
+	  <Optimize>true</Optimize>
+	  <TrimMode>full</TrimMode>
     <ApplicationId>com.CompanyName.TestRoutingProject</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+	
   </PropertyGroup>
 
   <ItemGroup>

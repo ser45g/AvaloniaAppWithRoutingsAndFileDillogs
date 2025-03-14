@@ -26,7 +26,7 @@
             <view:UserControl4View />
         </DataTemplate>
     </UserControl.DataTemplates>
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*" Margin="5">
 
         <Grid.Styles>
             <Style Selector="ui|SymbolIcon">
@@ -43,6 +43,7 @@
         </ToggleButton>
         <SplitView
             Grid.Row="1"
+			Padding="8 4"
             DisplayMode="Overlay"
             IsPaneOpen="{Binding #toggle.IsChecked, Mode=TwoWay}"
             OpenPaneLength="400">

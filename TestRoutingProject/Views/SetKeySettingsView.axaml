@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" xmlns:view="using:TestRoutingProject.Views" 
+			 xmlns:vm="using:TestRoutingProject.ViewModels"
+			  x:DataType="vm:SetKeySettingsViewModel"
+             x:Class="TestRoutingProject.Views.SetKeySettingsView">
+
+	<Grid Margin="5">
+		<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+			<StackPanel Orientation="Horizontal">
+
+				<TextBlock Margin="5" Text="Введите ключ" />
+				<TextBox  Text="{Binding Key}"/>
+			</StackPanel>
+
+			<Grid HorizontalAlignment="Stretch" Margin="3">
+				<Button HorizontalAlignment="Left" Padding="10" Command="{Binding CloseCommand}">Отмена</Button>
+				<Button HorizontalAlignment="Right" Padding="10" Command="{Binding OkCommand}">
+					Хорошо
+				</Button>
+			</Grid>
+		</StackPanel>
+	</Grid>
+	
+</UserControl>

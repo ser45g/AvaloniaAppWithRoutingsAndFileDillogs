@@ -18,13 +18,14 @@ namespace TestRoutingProject
             Register<UserControl1ViewModel, UserControl1View, MainWindow>();
             Register<UserControl2ViewModel, UserControl2View, MainWindow>();
             Register<UserControl3ViewModel, UserControl3View, MainWindow>();
-            Register<UserControl4ViewModel, UserControl4View,MainWindow>();
-            Register<UserControl5ViewModel, UserControl5View,MainWindow>();
+            Register<UserControl4ViewModel, UserControl4View, MainWindow>();
+            Register<UserControl5ViewModel, UserControl5View, MainWindow>();
 
             Register<ChartsViewModel,ChartsView,ChartsWindow>();
             Register<NoSettingsAvailableViewModel, NoSettingsAvailableView, NoSettingsAvailableWindow>();
-            Register<CeaserCypherSettingsViewModel,CeaserCypherSettingsView,CeaserCypherSettingsWindow>();
-            Register<ReplacementCypherSettingsViewModel,ReplacementCypherSettingsView,ReplacementCypherSettingsWindow>();
+            Register<CeaserCypherSettingsViewModel, CeaserCypherSettingsView, CeaserCypherSettingsWindow>();
+            Register<ReplacementCypherSettingsViewModel, ReplacementCypherSettingsView, ReplacementCypherSettingsWindow>();
+            Register<SetKeySettingsViewModel, SetKeySettingsView, SetKeySettingsWindow>();
         }
     }
 }

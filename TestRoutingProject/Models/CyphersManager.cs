@@ -18,6 +18,9 @@ namespace TestRoutingProject.Models
             _cyphers["Шифр Цезаря"] = new CeaserCypher(1);
             _cyphers["Инверсивный шифр"] = new InverseCypher();
             _cyphers["Шифр перестановкой"] = ReplacementCypher.Instantiate(1, 3, 2);
+            _cyphers["Шифр гаммированием"] = new StreamCypher("key");
+            _cyphers["Шифр Виженера"]= new RepeatingkeyVigenereCypher("key");
+            _cyphers["Шифр блочной перестановки"]=new ColumnarTranspositionCypher("key",' ');
         }
         public ICypher GetCypher(string name) { 
             return _cyphers[name];
