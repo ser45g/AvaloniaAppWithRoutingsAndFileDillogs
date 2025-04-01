@@ -23,7 +23,7 @@ namespace TestRoutingProject.ViewModels
         public ReplacementCypherSettingsViewModel(ReplacementCypher cypher)
         {
             this._cypher = cypher;
-            Order= new ObservableCollection<uint>(cypher.Order);
+            Order= new ObservableCollection<int>(cypher.Order);
         }
 
         public void OnClosed()
@@ -31,22 +31,22 @@ namespace TestRoutingProject.ViewModels
 
         }
         [ObservableProperty]
-        private IList<uint> _order;
+        private IList<int> _order;
 
         [ObservableProperty]
-        private uint _lengthOfBlock;
+        private int _lengthOfBlock;
 
 
-        partial void OnLengthOfBlockChanged(uint oldValue, uint newValue)
+        partial void OnLengthOfBlockChanged(int oldValue, int newValue)
         {
             ChangeLengthOfBlock(newValue);
         }
 
-        private void ChangeLengthOfBlock(uint newValue)
+        private void ChangeLengthOfBlock(int newValue)
         {
             
             Order.Clear();
-            for(uint i = 1; i < newValue+1; ++i)
+            for(int i = 1; i < newValue+1; ++i)
             {
                 Order.Add(i);
             }

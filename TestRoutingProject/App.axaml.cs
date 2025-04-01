@@ -50,6 +50,7 @@ namespace TestRoutingProject
             SplatRegistrations.Register<UserControl5ViewModel>();
             SplatRegistrations.Register<ChartsViewModel>();
             SplatRegistrations.Register<NoSettingsAvailableViewModel>();
+            SplatRegistrations.Register<SetKeySettingsViewModel>();
 
             
             build.RegisterLazySingleton<HistoryRouter<ViewModelBase>>(() => new HistoryRouter<ViewModelBase>(t => (ViewModelBase)Locator.Current.GetService(t)));

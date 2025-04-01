@@ -146,6 +146,39 @@ namespace TestRoutingProject.ViewModels
 
                 return;
             }
+            if(cypher is RepeatingkeyVigenereCypher)
+            {
+                var repeatingKeyVigenereCypher = cypher as RepeatingkeyVigenereCypher;
+                SetKeySettingsViewModel vm = new SetKeySettingsViewModel(repeatingKeyVigenereCypher.Key);
+
+                bool? dialogResult = await _dialogService.ShowDialogAsync(App.MainViewModel, vm);
+                if (dialogResult == true)
+                    _cyphersManager.SetCypher<RepeatingkeyVigenereCypher>(cypherName, new RepeatingkeyVigenereCypher(vm.Key));
+
+                return;
+            }
+            if(cypher is StreamCypher)
+            {
+                var repeatingKeyVigenereCypher = cypher as StreamCypher;
+                SetKeySettingsViewModel vm = new SetKeySettingsViewModel(repeatingKeyVigenereCypher.Key);
+
+                bool? dialogResult = await _dialogService.ShowDialogAsync(App.MainViewModel, vm);
+                if (dialogResult == true)
+                    _cyphersManager.SetCypher<StreamCypher>(cypherName, new StreamCypher(vm.Key));
+
+                return;
+            } 
+            if(cypher is ColumnarTranspositionCypher)
+            {
+                var repeatingKeyVigenereCypher = cypher as ColumnarTranspositionCypher;
+                SetKeySettingsViewModel vm = new SetKeySettingsViewModel(repeatingKeyVigenereCypher.Key);
+
+                bool? dialogResult = await _dialogService.ShowDialogAsync(App.MainViewModel, vm);
+                if (dialogResult == true)
+                    _cyphersManager.SetCypher<ColumnarTranspositionCypher>(cypherName, new ColumnarTranspositionCypher(vm.Key,' '));
+
+                return;
+            }
         }
 
         [ObservableProperty]

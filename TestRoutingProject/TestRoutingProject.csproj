@@ -58,7 +58,7 @@
 
   <ItemGroup>
     <Reference Include="Cyphers">
-      <HintPath>..\..\..\Cyphers\bin\Debug\net8.0\Cyphers.dll</HintPath>
+      <HintPath>..\..\..\Учеба\7_семестр\Криптография\Cyphers\bin\Debug\net8.0\Cyphers.dll</HintPath>
     </Reference>
   </ItemGroup>
 
